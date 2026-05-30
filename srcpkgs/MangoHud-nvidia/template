@@ -1,0 +1,32 @@
+# Template file for 'MangoHud-nvidia'
+pkgname=MangoHud-nvidia
+version=0.8.4
+revision=1
+archs="x86_64"
+build_style=fetch
+hostmakedepends="tar"
+depends="nvidia-libs"
+short_desc="Vulkan overlay layer with NVIDIA GPU monitoring (prebuilt)"
+maintainer="Z3em <anem@protonmail.com>"
+license="MIT"
+homepage="https://github.com/flightlessmango/MangoHud"
+distfiles="https://github.com/flightlessmango/MangoHud/releases/download/v${version}/MangoHud-${version}.r0.g992103e.tar.gz
+ https://raw.githubusercontent.com/flightlessmango/MangoHud/v${version}/LICENSE"
+checksum="aa0b2a009552f5e7c50baabf361267a79ea5e5c0fea440786f3b202d51f57753
+ 18503b2b95a4340a5c2a6854825e97a20f20a8ff06b971feb63654c45c9c482c"
+conflicts="MangoHud>=0"
+repository=nonfree
+python_version=3
+
+do_install() {
+	# The outer tarball sits unextracted in $wrksrc.
+	# Pipe the inner payload straight into the staging directory.
+	tar xf "$wrksrc"/*.tar.gz --to-stdout MangoHud/MangoHud-package.tar | \
+		tar xf - -C "$DESTDIR"
+
+	# The 32-bit libraries cause unresolvable shlibs on x86_64.
+	rm -r "$DESTDIR/usr/lib/mangohud/lib32"
+	rm "$DESTDIR/usr/share/vulkan/implicit_layer.d/MangoHud.x86.json"
+
+	vlicense LICENSE
+}
