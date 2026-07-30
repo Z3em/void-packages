@@ -10,10 +10,9 @@ makedepends="SDL2-devel gtk+3-devel libgomp-devel ZMusic-devel libopenal-devel l
 short_desc="Advanced Doom source port with OpenGL support"
 maintainer="Érico Nogueira <ericonr@disroot.org>"
 license="GPL-3.0-or-later"
-homepage="https://github.com/uzdoom/uzdoom"
-# TODO: confirm the upstream release tarball and checksum
-# distfiles="https://github.com/uzdoom/uzdoom/archive/refs/tags/v${version}.tar.gz"
-# checksum=""
+homepage="https://github.com/UZDoom/UZDoom"
+distfiles="https://github.com/UZDoom/UZDoom/archive/refs/tags/x-preview.tar.gz"
+checksum="f5cb1925774f3276dacb84fbf2e8701382f46e671b363e747d75c74b49d0ffd5"
 skip_extraction=yes
 nocross=yes
 
