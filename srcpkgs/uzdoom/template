@@ -26,6 +26,4 @@ fi
 
 post_install() {
 	vmkdir usr/share/licenses
-	vinstall ${pkgname}.desktop 644 usr/share/applications
-	vinstall ${pkgname}.png 644 usr/share/pixmaps
 }
