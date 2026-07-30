@@ -1,0 +1,32 @@
+# Template file for 'uzdoom'
+pkgname=uzdoom
+version=4.14.2
+revision=1
+archs="x86_64* aarch64*"
+build_style=cmake
+configure_args="-DINSTALL_PK3_PATH=share/uzdoom -DDYN_GTK=OFF -DDYN_OPENAL=OFF"
+hostmakedepends="pkg-config"
+makedepends="SDL2-devel gtk+3-devel libgomp-devel ZMusic-devel libopenal-devel libvpx-devel libwebp-devel"
+short_desc="Advanced Doom source port with OpenGL support"
+maintainer="Érico Nogueira <ericonr@disroot.org>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/uzdoom/uzdoom"
+# TODO: confirm the upstream release tarball and checksum
+# distfiles="https://github.com/uzdoom/uzdoom/archive/refs/tags/v${version}.tar.gz"
+# checksum=""
+skip_extraction=yes
+nocross=yes
+
+CXXFLAGS=-std=gnu++11
+
+if [ "$XBPS_TARGET_LIBC" = musl ]; then
+	CFLAGS+=" -DZ7_AFFINITY_DISABLE"
+	CXXFLAGS+=" -DZ7_AFFINITY_DISABLE"
+	makedepends+=" musl-fts-devel libexecinfo-devel"
+fi
+
+post_install() {
+	vmkdir usr/share/licenses
+	vinstall ${pkgname}.desktop 644 usr/share/applications
+	vinstall ${pkgname}.png 644 usr/share/pixmaps
+}
