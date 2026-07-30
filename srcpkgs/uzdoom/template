@@ -11,8 +11,8 @@ short_desc="Advanced Doom source port with OpenGL support"
 maintainer="Érico Nogueira <ericonr@disroot.org>"
 license="GPL-3.0-or-later"
 homepage="https://github.com/UZDoom/UZDoom"
-distfiles="https://github.com/UZDoom/UZDoom/archive/refs/tags/x-preview.tar.gz"
-checksum="f5cb1925774f3276dacb84fbf2e8701382f46e671b363e747d75c74b49d0ffd5"
+distfiles="https://github.com/UZDoom/UZDoom/archive/refs/tags/5.0.0-rc.1.tar.gz"
+checksum="1c32d00ec9afbf7e4f55cecacb4f4dc7a62cb1df14a6aa82e5a185c2f615474a"
 skip_extraction=yes
 nocross=yes
 
