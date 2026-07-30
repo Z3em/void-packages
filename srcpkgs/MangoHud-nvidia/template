@@ -1,0 +1,25 @@
+# Template file for 'MangoHud-nvidia'
+pkgname=MangoHud-nvidia
+version=0.8.4
+revision=1
+archs="x86_64"
+build_style=fetch
+depends="nvidia-libs"
+hostmakedepends="tar"
+conflicts="MangoHud>=0"
+short_desc="Vulkan overlay layer with NVIDIA GPU monitoring (prebuilt)"
+license="MIT"
+homepage="https://github.com/flightlessmango/MangoHud"
+repository=nonfree
+python_version=3
+distfiles="https://github.com/flightlessmango/MangoHud/releases/download/v${version}/MangoHud-${version}.r0.g992103e.tar.gz"
+checksum=aa0b2a009552f5e7c50baabf361267a79ea5e5c0fea440786f3b202d51f57753
+
+do_install() {
+    # The outer tarball sits unextracted in $wrksrc.
+    # Pipe the inner payload straight into the staging directory.
+    tar xf "$wrksrc"/*.tar.gz --to-stdout MangoHud/MangoHud-package.tar | \
+        tar xf - -C "$DESTDIR"
+    # Remove 32-bit libraries – they cause unresolvable shlibs on x86_64.
+    rm -rf "$DESTDIR/usr/lib/mangohud/lib32"
+}

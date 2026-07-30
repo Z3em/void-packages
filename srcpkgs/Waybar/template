@@ -4,7 +4,7 @@ version=0.15.0
 revision=4
 build_style=meson
 configure_args="-Dlibudev=enabled -Dman-pages=enabled
- -Dsystemd=disabled -Drfkill=enabled -Dniri=true -Dmpris=enabled
+ -Dsystemd=disabled -Drfkill=enabled -Dniri=true -Dmpris=enabled -Dnetwork=enabled
  $(vopt_feature libnl libnl)
  $(vopt_feature pulseaudio pulseaudio)
  $(vopt_feature dbusmenugtk dbusmenu-gtk)
