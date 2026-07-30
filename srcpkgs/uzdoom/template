@@ -1,6 +1,6 @@
 # Template file for 'uzdoom'
 pkgname=uzdoom
-version=5.0.0_rc1
+version=5.0.0rc1
 revision=1
 archs="x86_64* aarch64*"
 build_style=cmake
