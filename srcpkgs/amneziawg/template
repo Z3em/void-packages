@@ -1,9 +1,9 @@
-# Template file for 'amnezia-wg'
-pkgname=amnezia-wg
+# Template file for 'amneziawg'
+pkgname=amneziawg
 version=3.1.20260906
 revision=1
 build_wrksrc="src"
-depends="dkms"
+depends="dkms amneziawg-tools"
 short_desc="Amnezia WireGuard VPN tunnel (DKMS kernel module)"
 maintainer="Z3em <anem@protonmail.com>"
 license="GPL-2.0-only"
