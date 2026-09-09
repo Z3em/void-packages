@@ -1,0 +1,34 @@
+# Template file for 'vscode-ms'
+pkgname=vscode-ms
+version=1.137.0
+revision=1
+archs="x86_64"
+create_wrksrc=yes
+depends="xdg-utils"
+short_desc="Microsoft Visual Studio Code"
+maintainer="Z3em <anem@protonmail.com>"
+license="custom:Proprietary"
+homepage="https://code.visualstudio.com/"
+distfiles="https://update.code.visualstudio.com/${version}/linux-x64/stable>vscode-ms-${version}.tar.gz"
+checksum=8871d637292568e34c2d27daa5320a3b3c805f41f94014dfceafbe6134187fce
+repository=nonfree
+restricted=yes
+nostrip=yes
+noshlibprovides=yes
+
+post_extract() {
+	mv VSCode-linux-x64/* .
+	rmdir VSCode-linux-x64
+}
+
+do_install() {
+	vmkdir usr/lib/vscode-ms
+	vcopy . usr/lib/vscode-ms
+
+	vmkdir usr/bin
+	ln -s ../lib/vscode-ms/bin/code ${DESTDIR}/usr/bin/code
+
+	vinstall ${FILESDIR}/vscode-ms.desktop 644 usr/share/applications
+	vinstall resources/app/resources/linux/code.png 644 usr/share/pixmaps vscode-ms.png
+	vlicense LICENSES.chromium.html
+}
