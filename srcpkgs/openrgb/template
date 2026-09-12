@@ -1,7 +1,7 @@
 # Template file for 'openrgb'
 pkgname=openrgb
 version=1.0
-revision=1
+revision=2
 build_style=qmake
 hostmakedepends="qt5-qmake qt5-host-tools git pkg-config"
 makedepends="qt5-devel libusb-devel hidapi-devel mbedtls-devel"
@@ -21,6 +21,10 @@ post_install() {
 	vinstall ${FILESDIR}/openrgb.conf 644 usr/lib/modules-load.d
 	vsv openrgb
 	vdoc "${FILESDIR}/README.voidlinux"
+
+	vmkdir usr/lib/udev/rules.d
+	"${DESTDIR}/usr/bin/openrgb" --generate-udev-rules \
+		"${DESTDIR}/usr/lib/udev/rules.d/60-openrgb.rules"
 
 	# Void uses the packaged runit service instead.
 	rm -f "${DESTDIR}/usr/lib/systemd/system/openrgb.service"
