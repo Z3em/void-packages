@@ -1,0 +1,24 @@
+# Template file for '8bdkbd'
+pkgname=8bdkbd
+version=0.2.3
+revision=2
+build_style=python3-pep517
+hostmakedepends="python3-setuptools python3-setuptools_scm python3-wheel"
+depends="python3-usb"
+short_desc="Key mapper for 8BitDo Retro Mechanical Keyboard"
+maintainer="Z3em <anem@protonmail.com>"
+license="GPL-3.0-only"
+homepage="https://github.com/goncalor/8bitdo-kbd-mapper"
+distfiles="https://github.com/goncalor/8bitdo-kbd-mapper/archive/refs/tags/v${version}.tar.gz"
+checksum=57862e4a7f2c2e6c8355094905f0975ca6603ea10031c1e469f84596ec441699
+
+export SETUPTOOLS_SCM_PRETEND_VERSION=${version}
+
+do_check() {
+	PYTHONPATH=src python3 -m unittest discover tests
+}
+
+post_install() {
+	vinstall 50-8bitdo-kdb.rules 644 usr/lib/udev/rules.d
+	vinstall 50-8bitdo-108-key-kdb.rules 644 usr/lib/udev/rules.d
+}
