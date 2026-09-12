@@ -1,0 +1,38 @@
+From: Z3em <anem@protonmail.com>
+Subject: [PATCH] support profile header 08
+
+Some Retro 108 keyboard firmware returns 54 80 08 00 for a named
+profile. Its payload uses the same UTF-16BE encoding as the existing
+Retro 108 profile response (54 80 0a 00).
+
+---
+ src/eightbdkbd/client.py | 3 +++
+ src/eightbdkbd/consts.py | 1 +
+ 2 files changed, 4 insertions(+)
+
+diff --git a/src/eightbdkbd/consts.py b/src/eightbdkbd/consts.py
+index 10d3b1a..93a4494 100644
+--- a/src/eightbdkbd/consts.py
++++ b/src/eightbdkbd/consts.py
+@@ -7,6 +7,7 @@ MAP_DONE = [0x52, 0x76, 0xa5]
+ PROFILE_GET_NAME = [0x52, 0x80]
+ PROFILE_NAME = [0x54, 0x80, 0x10, 0x00]
+ PROFILE_108_NAME = [0x54, 0x80, 0x0a, 0x00]
++PROFILE_108_NAME_V2 = [0x54, 0x80, 0x08, 0x00]
+ PROFILE_NONE = [0x54, 0x80, 0x00, 0x00]
+ 
+ PROFILE_GET_MAPPED = [0x52, 0x81]
+diff --git a/src/eightbdkbd/client.py b/src/eightbdkbd/client.py
+index fb22acb..f9c9d78 100644
+--- a/src/eightbdkbd/client.py
++++ b/src/eightbdkbd/client.py
+@@ -49,6 +49,9 @@ class EightBDKdb:
+             # skip 4 bytes, exclude trailing null bytes
+             return r.rstrip(bytes([0]))[4:].decode(encoding="utf-16-be")
+         if r.startswith(bytes(PROFILE_108_NAME)):
+             return r.rstrip(bytes([0]))[4:].decode(encoding="utf-16-be")
++        if r.startswith(bytes(PROFILE_108_NAME_V2)):
++            return r.rstrip(bytes([0]))[4:].decode(encoding="utf-16-be")
++
+ 
+         raise ValueError(
