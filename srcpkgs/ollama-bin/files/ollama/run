@@ -1,0 +1,10 @@
+#!/bin/sh
+exec 2>&1
+
+export HOME=/var/lib/ollama
+groups=_ollama
+for group in video render; do
+	getent group "$group" >/dev/null && groups="${groups}:$group"
+done
+
+exec chpst -u "_ollama:${groups}" ollama serve
