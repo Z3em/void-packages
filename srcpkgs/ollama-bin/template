@@ -1,7 +1,7 @@
 # Template file for 'ollama-bin'
 pkgname=ollama-bin
 version=0.34.1
-revision=1
+revision=2
 archs="x86_64"
 short_desc="Run large language models locally - precompiled binaries"
 maintainer="Z3em <anem@protonmail.com>"
@@ -9,6 +9,9 @@ license="MIT"
 homepage="https://ollama.com/"
 distfiles="https://github.com/ollama/ollama/releases/download/v${version}/ollama-linux-amd64.tar.zst"
 checksum=f361dc3992ec07e4ad429f4bb2d10d4663ba2c295f9a9a688c7d52f4ba650034
+system_accounts="_ollama"
+_ollama_homedir="/var/lib/ollama"
+make_dirs="/var/lib/ollama 0750 _ollama _ollama"
 allow_unknown_shlibs=yes
 noshlibprovides=yes
 nopie=yes
@@ -17,4 +20,5 @@ do_install() {
 	vcopy bin usr
 	vcopy lib usr
 	vlicense ${FILESDIR}/LICENSE
+	vsv ollama
 }
