@@ -1,6 +1,6 @@
 # Template file for 'opencode'
 pkgname=opencode
-version=1.18.31
+version=1.18.32
 revision=1
 archs="x86_64* aarch64*"
 create_wrksrc=yes
@@ -16,19 +16,19 @@ nopie=yes
 case "$XBPS_TARGET_MACHINE" in
 	x86_64)
 		_dist_arch=x64
-		checksum=e9312be75ed803b7415fc2aeabda1f4fe938912a39673762dc0c38c0e11ebde4
+		checksum=3046e0404fdc60fb80307e7a47824ba07477364178a4d09baa8548496dd6d43b
 		;;
 	x86_64-musl)
 		_dist_arch=x64-musl
-		checksum=408bfbcae7d8760b4fa15f11d4b342afef25a2ea64c4807706f8180bacdb4008
+		checksum=1ce4699c8a9470ad806fa824112cd30b5d51b4038c29231189486302ef394d94
 		;;
 	aarch64)
 		_dist_arch=arm64
-		checksum=d4e332f46b227448582c0d9fc75f6f826dfe95c9f751bc2011fc4d937a042be6
+		checksum=568461b7d4d8c19865c97e9a1102e613049c6039d01fe772154de873c1865840
 		;;
 	aarch64-musl)
 		_dist_arch=arm64-musl
-		checksum=20f548107dd3307437594ad4344f9dac2e2264c26ea03d946db461f73c2d1bf0
+		checksum=abf302edbc996548e28417dcdf7f67109fd95c7344f813a312633a818986204d
 		;;
 esac
 
