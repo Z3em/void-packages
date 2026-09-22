@@ -1,0 +1,25 @@
+# Template file for 'amneziawg'
+pkgname=amneziawg
+version=3.1.20260906
+revision=1
+build_wrksrc="src"
+depends="dkms amneziawg-tools"
+short_desc="Amnezia WireGuard VPN tunnel (DKMS kernel module)"
+maintainer="Z3em <anem@protonmail.com>"
+license="GPL-2.0-only"
+homepage="https://github.com/amnezia-vpn/amneziawg-linux-kernel-module"
+distfiles="https://github.com/amnezia-vpn/amneziawg-linux-kernel-module/archive/refs/tags/v${version}.tar.gz"
+checksum=e32fa46f1b6f9e319c5261f0b0765c3a9261e40cb7c4616fd73500da961a2932
+
+dkms_modules="amneziawg ${version}"
+
+post_patch() {
+	vsed -i "s/^WIREGUARD_VERSION = .*/WIREGUARD_VERSION = ${version}/" Makefile
+	vsed -i "s/^PACKAGE_VERSION=.*/PACKAGE_VERSION=\"${version}\"/" dkms.conf
+	vsed -i "s/^#define WIREGUARD_VERSION .*/#define WIREGUARD_VERSION \"${version}\"/" version.h
+}
+
+do_install() {
+	make DESTDIR="${DESTDIR}" \
+		DKMSDIR="/usr/src/amneziawg-${version}" dkms-install
+}
