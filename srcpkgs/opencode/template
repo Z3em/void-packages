@@ -1,0 +1,44 @@
+# Template file for 'opencode'
+pkgname=opencode
+version=1.18.32
+revision=1
+archs="x86_64* aarch64*"
+create_wrksrc=yes
+depends="ripgrep"
+short_desc="AI coding agent for the terminal"
+maintainer="Z3em <anem@protonmail.com>"
+license="MIT"
+homepage="https://opencode.ai"
+changelog="https://github.com/anomalyco/opencode/releases"
+nostrip=yes
+nopie=yes
+
+case "$XBPS_TARGET_MACHINE" in
+	x86_64)
+		_dist_arch=x64
+		checksum=3046e0404fdc60fb80307e7a47824ba07477364178a4d09baa8548496dd6d43b
+		;;
+	x86_64-musl)
+		_dist_arch=x64-musl
+		checksum=1ce4699c8a9470ad806fa824112cd30b5d51b4038c29231189486302ef394d94
+		;;
+	aarch64)
+		_dist_arch=arm64
+		checksum=568461b7d4d8c19865c97e9a1102e613049c6039d01fe772154de873c1865840
+		;;
+	aarch64-musl)
+		_dist_arch=arm64-musl
+		checksum=abf302edbc996548e28417dcdf7f67109fd95c7344f813a312633a818986204d
+		;;
+esac
+
+distfiles="https://github.com/anomalyco/opencode/releases/download/v${version}/opencode-linux-${_dist_arch}.tar.gz
+ https://raw.githubusercontent.com/anomalyco/opencode/v${version}/LICENSE"
+checksum="${checksum}
+ 625f0f619133f89bbbb2abe37369613dfa1885eba1e50d02170deb62bb42cb6b"
+skip_extraction="LICENSE"
+
+do_install() {
+	vbin opencode
+	vlicense "${XBPS_SRCDISTDIR}/${pkgname}-${version}/LICENSE"
+}
