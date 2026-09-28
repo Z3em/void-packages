@@ -1,9 +1,8 @@
 # Template file for 'opencode'
 pkgname=opencode
-version=1.18.32
+version=2.0.18
 revision=1
 archs="x86_64* aarch64*"
-create_wrksrc=yes
 depends="ripgrep"
 short_desc="AI coding agent for the terminal"
 maintainer="Z3em <anem@protonmail.com>"
@@ -16,29 +15,29 @@ nopie=yes
 case "$XBPS_TARGET_MACHINE" in
 	x86_64)
 		_dist_arch=x64
-		checksum=3046e0404fdc60fb80307e7a47824ba07477364178a4d09baa8548496dd6d43b
+		checksum=aa455d073b3a0733a6912f477b370f3d50ca7af44715bb7ccc41faa13b3cc2eb
 		;;
 	x86_64-musl)
 		_dist_arch=x64-musl
-		checksum=1ce4699c8a9470ad806fa824112cd30b5d51b4038c29231189486302ef394d94
+		checksum=54e1ab9f9d0912ff2cb61d63a4940ec48ac7892c00c6907131427ecad3bb87b5
 		;;
 	aarch64)
 		_dist_arch=arm64
-		checksum=568461b7d4d8c19865c97e9a1102e613049c6039d01fe772154de873c1865840
+		checksum=ddc98e5c789c496dada1ecfae9fe4e0931c7ac43a46da5436b97ecda5cd0ba5d
 		;;
 	aarch64-musl)
 		_dist_arch=arm64-musl
-		checksum=abf302edbc996548e28417dcdf7f67109fd95c7344f813a312633a818986204d
+		checksum=0f5b16a036a04abcba4fc9fbe6a8b863f644f4e5b1bf01e4d130b0e098a1d373
 		;;
 esac
 
-distfiles="https://github.com/anomalyco/opencode/releases/download/v${version}/opencode-linux-${_dist_arch}.tar.gz
+distfiles="https://registry.npmjs.org/@opencode/cli-linux-${_dist_arch}/-/cli-linux-${_dist_arch}-${version}.tgz
  https://raw.githubusercontent.com/anomalyco/opencode/v${version}/LICENSE"
 checksum="${checksum}
  625f0f619133f89bbbb2abe37369613dfa1885eba1e50d02170deb62bb42cb6b"
 skip_extraction="LICENSE"
 
 do_install() {
-	vbin opencode
+	vbin bin/opencode
 	vlicense "${XBPS_SRCDISTDIR}/${pkgname}-${version}/LICENSE"
 }
