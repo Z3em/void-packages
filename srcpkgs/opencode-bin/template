@@ -1,0 +1,44 @@
+# Template file for 'opencode-bin'
+pkgname=opencode-bin
+version=2.0.21
+revision=1
+archs="x86_64* aarch64*"
+depends="ripgrep"
+short_desc="AI coding agent for the terminal (precompiled binaries)"
+maintainer="Z3em <anem@protonmail.com>"
+license="MIT"
+homepage="https://opencode.ai"
+changelog="https://github.com/anomalyco/opencode/releases"
+conflicts="opencode>=0"
+nostrip=yes
+nopie=yes
+
+case "$XBPS_TARGET_MACHINE" in
+	x86_64)
+		_dist_arch=x64
+		_checksum=57db421ab689d6831178c84736ba1e667c9c27627866849a114fa57afbc81785
+		;;
+	x86_64-musl)
+		_dist_arch=x64-musl
+		_checksum=944273b39f58b25e9672b47fd8e579f0d8f15a7dd28c983302184b73577cb5f8
+		;;
+	aarch64)
+		_dist_arch=arm64
+		_checksum=046c0e0e8eec8f6085d46c0eca29ece65fb00e21df0881c81cbcf7392458b1d2
+		;;
+	aarch64-musl)
+		_dist_arch=arm64-musl
+		_checksum=d53e1294fae05fd532a79338b94e92f124fa372b116584d22eec92ac7d37eadb
+		;;
+esac
+
+distfiles="https://registry.npmjs.org/@opencode/cli-linux-${_dist_arch}/-/cli-linux-${_dist_arch}-${version}.tgz
+ https://raw.githubusercontent.com/anomalyco/opencode/v${version}/LICENSE"
+checksum="${_checksum}
+ 625f0f619133f89bbbb2abe37369613dfa1885eba1e50d02170deb62bb42cb6b"
+skip_extraction="LICENSE"
+
+do_install() {
+	vbin bin/opencode
+	vlicense "${XBPS_SRCDISTDIR}/${pkgname}-${version}/LICENSE"
+}
