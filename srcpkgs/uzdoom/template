@@ -1,6 +1,6 @@
 # Template file for 'uzdoom'
 pkgname=uzdoom
-version=5.0.1
+version=5.0.3
 revision=1
 archs="x86_64* aarch64*"
 build_style=cmake
@@ -29,7 +29,7 @@ maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-3.0-or-later"
 homepage="https://github.com/UZDoom/UZDoom"
 distfiles="https://github.com/UZDoom/UZDoom/archive/refs/tags/${version}.tar.gz"
-checksum=8135b15d151d18fd20f85839d9bf48beefc4e074b406ffba30d7c46f8479b430
+checksum=223d7abef2c7a63123824417a2fe5b22e21e7dcb2ac5c840fca43c470794cab7
 nocross=yes
 
 if [ "$XBPS_TARGET_LIBC" = musl ]; then
