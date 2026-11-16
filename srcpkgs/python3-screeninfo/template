@@ -1,0 +1,19 @@
+# Template file for 'python3-screeninfo'
+pkgname=python3-screeninfo
+version=0.8.1
+revision=1
+build_style=python3-pep517
+hostmakedepends="python3-poetry-core"
+depends="python3 libdrm libX11 libXinerama libXrandr"
+short_desc="Python library to enumerate physical monitors"
+maintainer="Z3em <anem@protonmail.com>"
+license="MIT, BSD-3-Clause"
+homepage="https://github.com/rr-/screeninfo"
+distfiles="${PYPI_SITE}/s/screeninfo/screeninfo-${version}.tar.gz"
+checksum=9983076bcc7e34402a1a9e4d7dabf3729411fd2abb3f3b4be7eba73519cd2ed1
+# No tests in the source distribution.
+make_check=no
+
+post_install() {
+	vlicense LICENSE.md
+}
