@@ -1,6 +1,6 @@
 # Template file for 'protonmail-bridge'
 pkgname=protonmail-bridge
-version=3.27.1
+version=3.27.2
 revision=1
 archs="x86_64* aarch64* riscv64*"
 build_style=cmake
@@ -25,7 +25,7 @@ maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-3.0-or-later"
 homepage="https://proton.me/mail/bridge"
 distfiles="https://github.com/ProtonMail/proton-bridge/archive/refs/tags/v${version}.tar.gz"
-checksum=57191e08f5f3204d414aabe54972ea18d9e1dd76d7f71d21a1456a280aa52605
+checksum=720ced16f25b6f92758f2117edc9ccd7511c66202097ba6b1630ab29d6b097b6
 nopie_files="/usr/libexec/protonmail/bridge"
 nocross="protobuf generation fails"
 
