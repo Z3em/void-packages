@@ -1,0 +1,19 @@
+# Template file for 'python3-imageio-ffmpeg'
+pkgname=python3-imageio-ffmpeg
+version=0.8.1
+revision=1
+build_style=python3-pep517
+make_check_args="tests/test_parsing.py"
+hostmakedepends="python3-setuptools python3-wheel"
+depends="python3 ffmpeg6"
+checkdepends="python3-pytest"
+short_desc="FFmpeg wrapper for Python"
+maintainer="Z3em <anem@protonmail.com>"
+license="BSD-2-Clause"
+homepage="https://github.com/imageio/imageio-ffmpeg"
+distfiles="${PYPI_SITE}/i/imageio-ffmpeg/imageio_ffmpeg-${version}.tar.gz"
+checksum=9e5162fa482c3c45a6703b2223947d15c37730e63b048d64937fa80243aa5a0c
+
+post_install() {
+	vlicense LICENSE
+}
