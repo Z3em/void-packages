@@ -1,0 +1,33 @@
+# Template file for 'wallframe'
+pkgname=wallframe
+version=0.0.0.20261107
+revision=1
+_commit=68a3495f00802bc3ed03718ce11e9ad2c5982c20
+hostmakedepends="python3 python3-packaging-bootstrap"
+depends="python3 python3-gobject python3-cairo python3-Pillow gtk4>=4.10"
+checkdepends="python3-pytest python3-Pillow nodejs"
+short_desc="GTK4 wallpaper framing editor for Wayland"
+maintainer="Z3em <anem@protonmail.com>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/AlejandroMinor/wallframe"
+distfiles="https://github.com/AlejandroMinor/wallframe/archive/${_commit}.tar.gz"
+checksum=ecdf6d34de124138a194e25a6b1b45a8f8e37f7ce24b86f83e8e338c1835b0b6
+
+do_check() {
+	mkdir -p "${wrksrc}/test-home"
+	env -u DISPLAY -u WAYLAND_DISPLAY -u DBUS_SESSION_BUS_ADDRESS \
+		HOME="${wrksrc}/test-home" XDG_CONFIG_HOME="${wrksrc}/test-home/config" \
+		XDG_DATA_HOME="${wrksrc}/test-home/data" \
+		XDG_CACHE_HOME="${wrksrc}/test-home/cache" \
+		PYTHONPATH=src python3 -m pytest -q
+}
+
+do_install() {
+	vmkdir "usr/lib/python${py3_ver}/site-packages"
+	vcopy src/wallframe "usr/lib/python${py3_ver}/site-packages"
+	vbin "${FILESDIR}/wallframe"
+	vinstall data/io.github.AlejandroMinor.wallframe.desktop 644 usr/share/applications
+	vmkdir usr/share/icons
+	vcopy src/wallframe/icons/hicolor usr/share/icons
+	vdoc README.md
+}
