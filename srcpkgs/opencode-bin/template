@@ -1,6 +1,6 @@
 # Template file for 'opencode-bin'
 pkgname=opencode-bin
-version=2.3.0
+version=2.3.2
 revision=1
 archs="x86_64* aarch64*"
 depends="ripgrep"
@@ -16,19 +16,19 @@ nopie=yes
 case "$XBPS_TARGET_MACHINE" in
 	x86_64)
 		_dist_arch=x64
-		_checksum=408f854b5fac7857a3b4df4e783d3a8b70f5cc8c7c3187aac09c5be0576c14ae
+		_checksum=845468e35aa5a2b574945a0b96675e64c604f5279ced9aa7245068d8c0b6f6bb
 		;;
 	x86_64-musl)
 		_dist_arch=x64-musl
-		_checksum=f7cd4e3119c72412bcea9956f67f21d0b3becefd7c152b19c766fa876e3b47f2
+		_checksum=b6a1d2a6271f0d2703d60e6345113cb04d216a0a7c09756ac63f3ad038ea1117
 		;;
 	aarch64)
 		_dist_arch=arm64
-		_checksum=be30066353bb592c43919b31072ff4099e069636c31a16806b088737e0287cea
+		_checksum=91a937129efdae8eb8c0c5018ae533f9f35117f26ffd9a4d1f7a5f9da1e69306
 		;;
 	aarch64-musl)
 		_dist_arch=arm64-musl
-		_checksum=ad6e971550721d55a1b3c203a55325fe9ada4d0212ee045da39361bd724ec638
+		_checksum=a22614aea091eb25484df9169bfa7335bd6b0351bdd47503d8e26dc8441256ee
 		;;
 esac
 
