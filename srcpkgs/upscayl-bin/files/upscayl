@@ -1,5 +1,0 @@
-#!/bin/sh
-
-# This is the ZIP distribution, not an AppImage. Leave updates to XBPS.
-unset APPIMAGE
-exec /usr/lib/upscayl/upscayl --ozone-platform-hint=auto "$@"
